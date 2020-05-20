@@ -10,7 +10,7 @@ This repository contains an implementation of an encoder-decoder network for sem
 </p>
 
 <p align="center">
-    <img src="./data/network.png" class="center">
+    <img src="./data/network.png" class="center" width=600>
 </p>
 
 This repository is currently under construction
