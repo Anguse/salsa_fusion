@@ -120,6 +120,8 @@ def test_with_fusion(net, cfg, fusion_path):
     # load fusion
     fusion_input = np.load(fusion_path)
     laser = fusion_input[0]
+    nr = list(map(int, re.findall(r'\d+', fusion_path)))[1]
+    bagnr = list(map(int, re.findall(r'\d+', fusion_path)))[0]
     #laser = np.flip(laser, axis=1)
     #laser = np.flip(laser, axis=0)
     depth = fusion_input[1]
@@ -189,7 +191,7 @@ def test_with_fusion(net, cfg, fusion_path):
         ax3.set_title('Prediction')
         plt.savefig('../preds/pred_plot.png', bbox_inches='tight')
         '''
-        pimg.imsave('../preds/fusion_pred.png', pred_img)
+        pimg.imsave('../preds/fusion/'+str(bagnr)+'_'+str(nr)+'.png', pred_img)
         # showPredImg(pred_img)
         # np.save('../preds/depth_pred.npy', pred_img)
 
@@ -394,18 +396,17 @@ def main():
     # test_bev_img = "../data/test_bev_image.npy"
     # test_with_bev_images(net, test_bev_img)
 
-    # testing by using the raw point cloud data
-    test_path = "/data/tmp/hl_data/validation/fusion/test/all/"
+    # testing by using the raw point cloud dat
+    test_path = "../data/test/fusion/test/all/"
     # np.random.shuffle(test_folder)
     laser_images = list(glob(os.path.join(test_path,  '*.npy')))
     laser_images = sorted(laser_images, key=len)
-    np.random.shuffle(laser_images)
-    nr = laser_images.index(test_path+str(sys.argv[1]))
+    #np.random.shuffle(laser_images)
+    #nr = laser_images.index(test_path+str(sys.argv[1]))
     #nr = 0
-    fusion_input = laser_images[nr]
-    test_with_fusion(net, cfg, fusion_input)
-    print(fusion_input)
-
+    for fusion_input in laser_images:
+        print(fusion_input)
+        test_with_fusion(net, cfg, fusion_input)
     '''
     start = time.time()
     iterations = 100

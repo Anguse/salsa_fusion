@@ -79,7 +79,7 @@ def depth_config():
     cfg.CLS_LOSS_WEIGHTS = np.array(
         [1.73, 1.76, 11.26, 26.27, 1.73])  # smooth_freq weight values
 
-    cfg.GPU = "1"                    # gpu id
+    cfg.GPU = 0                    # gpu id
     cfg.DROPOUT_PROB = 0.5         # probability to keep a node in dropout
     cfg.NUM_EPOCHS = 100           # epoch number
     cfg.BATCH_SIZE = 8             # batch size

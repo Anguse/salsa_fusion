@@ -173,17 +173,16 @@ def main():
 
     # testing by using the raw point cloud data
     #test_path = "/data/tmp/hl_data/dataset/depth/test/"
-    test_path = "/data/tmp/hl_data/validation/depth/test/all/"
+    test_path = "../data/test/depth/test/all/"
     depth_images = list(glob(os.path.join(test_path, '*.npy')))
     np.random.shuffle(depth_images)
     # print(depth_images)
     #nr = depth_images.index(test_path+'val1_depth_labeled48.npy')
     nr = 0
     input_image = depth_images[nr]
-    test_with_depth(net, cfg, input_image)
-    print(input_image)
+    #test_with_depth(net, cfg, input_image)
+    #print(input_image)
 
-    '''
     # np.random.shuffle(depth_images)
     start = time.time()
     iterations = 100
@@ -203,7 +202,6 @@ def main():
         np.mean(score[:, 1, :], axis=1)), np.mean(np.mean(score[:, 2, :], axis=1))))
     end = time.time()
     print("%3f seconds per image" % ((end-start)/(iterations*n_test_samples)))
-    '''
 
     #nr = int(sys.argv[1])
     #image = depth_images[nr]
